@@ -1,0 +1,43 @@
+main {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fffeee;
+
+  & .main__content {
+    text-align: center;
+
+    & header {
+      & h1 {
+        color: orangered;
+        font-size: 5rem;
+        margin: 0;
+      }
+
+      & h2 {
+        margin: 0 0 1rem 0;
+      }
+    }
+
+    & section {
+      & button {
+        all: unset;
+        background-color: orangered;
+        color: white;
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        border-radius: 2rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgb(202, 54, 0);
+        }
+      }
+
+      & .main__text {
+        margin: 2rem 0 1rem 0;
+      }
+    }
+  }
+}
