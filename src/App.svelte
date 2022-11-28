@@ -5,7 +5,7 @@
 
   // app state
   let recording = false;
-  let html = [];
+  let html = '';
   let recognition;
 
   const handleButton = () => {
@@ -14,10 +14,10 @@
   };
 
   const onResult = (e: any) => {
-    html = [];
+    html = '';
 
     for (const r of e.results) {
-      html.push(`<p>${r[0].transcript}</p>`);
+      html += `${r[0].transcript}\n`;
     }
   };
 
@@ -44,16 +44,26 @@
       <h2>Live Speech to Text Converter</h2>
     </header>
     <section>
-      <button on:click={handleButton} id="button"
-        >{recording ? 'STOP RECORDING' : 'START RECORDING'}</button
-      >
+      <div class="main__row">
+        <button
+          on:click={handleButton}
+          id="button"
+          class={recording ? 'button__recording' : ''}
+          >{recording ? 'STOP RECORDING' : 'START RECORDING'}</button
+        >
+      </div>
       <div class="main__text">
-        {@html html}
+        <textarea
+          class="main__transcript"
+          value={html || 'Your text will appear here as you speak.'}
+          name="transcript"
+        />
       </div>
 
-      <p>
-        {recording ? 'RECORDING...' : ''}
-      </p>
+      <div class="main__actions">
+        <button>Copy Text</button>
+        <button>Send via Email</button>
+      </div>
     </section>
   </div>
 </main>
