@@ -21,6 +21,15 @@
     }
   };
 
+  const copyText = async () => {
+    try {
+      await navigator.clipboard.writeText(html || 'Nothing to copy!');
+      alert('Copied');
+    } catch (err) {
+      alert('Failed');
+    }
+  };
+
   onMount(() => {
     // init SpeechRecognition API
     const SpeechRecognition =
@@ -61,8 +70,12 @@
       </div>
 
       <div class="main__actions">
-        <button>Copy Text</button>
-        <button>Send via Email</button>
+        <button on:click={copyText}>Copy Text</button>
+        <button
+          on:click={() =>
+            (location.href = `mailto:?subject=Vocalise Transcript&body=${html}`)}
+          >Send via Email</button
+        >
       </div>
     </section>
   </div>
